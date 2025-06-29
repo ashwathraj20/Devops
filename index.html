@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Typing Speed Tester App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-gradient-to-b from-blue-50 via-indigo-50 to-purple-50 min-h-screen flex flex-col font-sans">
+  
+  <body class="bg-gradient-to-b from-blue-50 via-indigo-50 to-purple-50 min-h-screen flex flex-col font-sans">
+  <header class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md py-4 px-6 flex justify-between items-center sticky top-0 z-10">
+    <h1 class="text-xl sm:text-2xl font-semibold tracking-wide">Typing Speed Tester</h1>
+    <nav>
+      <ul class="flex gap-4 text-sm sm:text-base">
+        <li><button id="nav-main" class="nav-btn underline decoration-yellow-300 decoration-4 decoration-solid">Practice</button></li>
+        <li><button id="nav-char" class="nav-btn hover:underline hover:decoration-pink-400 hover:decoration-4 hover:decoration-solid">Character Test</button></li>
+        <li><button id="nav-sentence" class="nav-btn hover:underline hover:decoration-pink-400 hover:decoration-4 hover:decoration-solid">Sentence Test</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="flex-1 flex flex-col justify-center items-center relative p-4 max-w-4xl mx-auto w-full">
+    <!-- Main Practice Page -->
+    <section id="page-main" class="w-full max-w-3xl space-y-8">
+      <div class="flex flex-col sm:flex-row justify-around items-center gap-8">
+        <div
+          class="flex-1 bg-white shadow rounded-xl p-6 cursor-pointer hover:shadow-lg transition transform hover:-translate-y-1"
+          id="start-char-test"
+          tabindex="0"
+          role="button"
+          aria-label="Go to Character Practice Test"
+        >
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0bdaa20f-0915-436c-8d65-c0145c6e6a1a.png" alt="Abstract illustration with colorful letters floating and a typing keyboard with bright blue and purple tones" class="rounded-lg mb-4" onerror="this.style.display='none';"/>
+          <h2 class="text-xl font-semibold mb-2 text-indigo-600 text-center">Character Practice Test</h2>
+          <p class="text-sm text-indigo-600 text-center leading-relaxed">
+            Test your typing speed and accuracy with character-by-character practice under a time constraint.
+          </p>
+        </div>
+
+        <div
+          class="flex-1 bg-white shadow rounded-xl p-6 cursor-pointer hover:shadow-lg transition transform hover:-translate-y-1"
+          id="start-sentence-test"
+          tabindex="0"
+          role="button"
+          aria-label="Go to Sentence Practice Test"
+        >
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/df681fe2-378c-4e9a-90db-8c3a49de4ebf.png" alt="A modern, colorful abstract art with floating sentences and a person typing on a laptop" class="rounded-lg mb-4" onerror="this.style.display='none';"/>
+          <h2 class="text-xl font-semibold mb-2 text-pink-600 text-center">Sentence Practice Test</h2>
+          <p class="text-sm text-pink-600 text-center leading-relaxed">
+            Improve your typing with timed full sentence tests that challenge your speed and comprehension.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-12 bg-gradient-to-r from-green-300 to-green-200 rounded-xl shadow-lg flex flex-col items-center p-6">
+        <h3 class="text-lg font-semibold mb-3 text-green-700">Learn Reading</h3>
+        <p class="max-w-lg text-green-800 text-center leading-relaxed">
+          Learning to read faster and understand better helps your typing efficiency. Use our recommended reading tools, tips, and exercises to increase your reading comprehension and speed.
+        </p>
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a8106f67-ffe3-4ca1-a043-de8c33ea258a.png" alt="Illustration showing an open book glowing with a lightbulb symbolizing learning and reading improvement with fresh green and turquoise colors" class="mt-6 rounded-lg shadow-lg w-full max-w-md" onerror="this.style.display='none';" />
+      </div>
+    </section>
+
+    <!-- Character Practice Page -->
+    <section id="page-char" class="hidden w-full max-w-3xl bg-white rounded-xl shadow-lg p-6 relative">
+      <h2 class="text-2xl font-semibold text-indigo-700 mb-4 text-center">Character Practice Test</h2>
+
+      <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-6">
+        <div class="flex flex-col gap-1 bg-indigo-50 rounded p-4 flex-1 shadow-inner">
+          <p class="text-indigo-900 font-mono font-semibold tracking-wide text-sm mb-1">Original Character</p>
+          <div id="original-char" class="text-6xl font-extrabold text-indigo-700 select-none text-center">A</div>
+        </div>
+        <div class="flex flex-col gap-1 bg-indigo-50 rounded p-4 flex-1 shadow-inner">
+          <p class="text-indigo-900 font-mono font-semibold tracking-wide text-sm mb-1">Your Typed Character</p>
+          <input autofocus id="typed-char" maxlength="1" autocomplete="off" spellcheck="false" type="text"
+            class="border-2 border-indigo-300 focus:border-indigo-500 rounded text-6xl font-extrabold text-indigo-700 text-center font-mono tracking-wider" />
+        </div>
+      </div>
+
+      <div class="flex justify-around items-center mb-6 text-center text-indigo-700 font-semibold text-lg font-mono gap-6">
+        <div>
+          <div id="correct-count" class="text-green-600">0</div>
+          <div class="text-sm">Correct</div>
+        </div>
+        <div>
+          <div id="wrong-count" class="text-red-600">0</div>
+          <div class="text-sm">Wrong</div>
+        </div>
+        <div>
+          <div id="accuracy" class="">100%</div>
+          <div class="text-sm">Accuracy</div>
+        </div>
+        <div>
+          <div id="cpm" class="">0 CPM</div>
+          <div class="text-sm">Speed</div>
+        </div>
+      </div>
+
+      <div class="flex justify-center gap-4 mb-4">
+        <button id="char-start-btn" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 rounded text-white font-semibold shadow">Start Test</button>
+        <button id="char-reset-btn" class="px-6 py-2 bg-gray-300 hover:bg-gray-400 rounded font-semibold">Reset</button>
+      </div>
+
+      <div class="text-sm text-center text-indigo-600">
+        <p>Characters are case-sensitive. Type the shown character and press enter or click outside to submit.</p>
+      </div>
+
+      <div class="absolute top-3 right-3 cursor-pointer text-indigo-500 hover:text-indigo-800" id="char-back-btn" role="button" aria-label="Back to main page" title="Back to main page" tabindex="0">
+        ← Back
+      </div>
+    </section>
+
+    <!-- Sentence Practice Page -->
+    <section id="page-sentence" class="hidden w-full max-w-3xl bg-white rounded-xl shadow-lg p-6 relative flex flex-col">
+      <h2 class="text-2xl font-semibold text-pink-700 mb-4 text-center">Sentence Practice Test</h2>
+      <div class="mb-4">
+        <div class="rounded bg-pink-100 text-pink-800 p-4 font-medium max-h-40 overflow-y-auto tracking-tight leading-relaxed select-text" id="sentence-text">
+          Dealing Natural Disasters: A natural disaster is a major event resulting from processes of the Earth. It causes a
+          lot of life and property loss. It is true that a disaster is a natural process and stop it but by making certain
+          we can reduce the magnitution of the loss property.
+        </div>
+      </div>
+
+      <textarea id="sentence-input" aria-label="Type the sentence shown above" class="border-2 border-pink-300 rounded p-3 flex-grow resize-none mb-4 text-lg font-mono tracking-wide text-pink-700"
+        spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="Type here..." disabled></textarea>
+
+      <div class="flex justify-around text-pink-700 font-mono font-semibold text-lg mb-6">
+        <div>Time Left: <span id="sentence-timer">60</span>s</div>
+        <div>Accuracy: <span id="sentence-accuracy">100%</span></div>
+        <div>WPM: <span id="wpm">0</span></div>
+      </div>
+
+      <div class="flex justify-center gap-4 mb-2">
+        <button id="sentence-start-btn" class="px-6 py-2 bg-pink-600 hover:bg-pink-700 rounded text-white font-semibold shadow">Start Test</button>
+        <button id="sentence-reset-btn" class="px-6 py-2 bg-gray-300 hover:bg-gray-400 rounded font-semibold">Reset</button>
+      </div>
+
+      <div class="absolute top-3 right-3 cursor-pointer text-pink-500 hover:text-pink-800" id="sentence-back-btn" role="button" aria-label="Back to main page" title="Back to main page" tabindex="0">
+        ← Back
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-4 text-center text-xs sm:text-sm select-none">
+    © 2024 Typing Speed Tester App | DevOps Tools Powered UI
+  </footer>
+
+  
+  <script src="script.js"></script>
+</body>
+</html>
